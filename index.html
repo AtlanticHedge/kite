@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kite Callback</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    .token { 
+      background: #f0f0f0; 
+      padding: 10px; 
+      font-size: 18px;
+      font-family: monospace;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">Processing...</div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token   = params.get('request_token');
+    const status  = params.get('status');
+    const div     = document.getElementById('content');
+
+    if (status === 'success' && token) {
+      div.innerHTML = 
+        '<h2>✅ Login Successful</h2>' +
+        '<p>Your request token:</p>' +
+        '<div class="token">' + token + '</div>' +
+        '<br><p>Copy this token into your application.</p>';
+    } else {
+      div.innerHTML = '<h2>❌ Login failed or cancelled</h2>';
+    }
+  </script>
+</body>
+</html>
